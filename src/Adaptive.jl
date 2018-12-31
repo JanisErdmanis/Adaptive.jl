@@ -70,7 +70,7 @@ function Base.getproperty(l::AdaptiveLearner2D,s::Symbol)
     elseif s==:pending
         Set(p for p in learner[:pending_points])        
     elseif s==:values
-        [v for v in py"$(learner.data).values()"]
+        [v for v in py"$(learner).data.values()"]
     elseif s==:learner
         learner
     else
