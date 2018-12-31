@@ -37,6 +37,8 @@ function Base.getproperty(l::AdaptiveLearner1D,s::Symbol)
         y[sortperm(x)]
     elseif s==:data
         learner[:data]
+    elseif s==:pending
+        Set(p for p in learner[:pending_points])        
     elseif s==:learner
         learner
     else
@@ -65,8 +67,11 @@ function Base.getproperty(l::AdaptiveLearner2D,s::Symbol)
         tri[:vertices] .+ 1
     elseif s==:data
         learner[:data]
+    elseif s==:pending
+        Set(p for p in learner[:pending_points])        
     elseif s==:values
-        [values for (key,values) in learner[:data]]
+        # Using py because OrderedDict is being used in the python.
+        py"[values for (key,values) in $(learner).data]"
     elseif s==:learner
         learner
     else
