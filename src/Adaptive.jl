@@ -70,8 +70,7 @@ function Base.getproperty(l::AdaptiveLearner2D,s::Symbol)
     elseif s==:pending
         Set(p for p in learner[:pending_points])        
     elseif s==:values
-        # Using py because OrderedDict is being used in the python.
-        py"[values for (key,values) in $(learner).data]"
+        [v for v in py"$(learner.data).values()"]
     elseif s==:learner
         learner
     else
