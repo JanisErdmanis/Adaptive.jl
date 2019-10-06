@@ -3,6 +3,8 @@ module Adaptive
 
 using PyCall
 const adaptive = PyNULL()
+
+
 function __init__()
     copy!(adaptive, pyimport_conda("adaptive", "adaptive"))
 end
