@@ -4,5 +4,7 @@ os:
 julia:
   - 1.2
 before_install:
+  - sudo apt-get update
+  - sudo apt-get install -y python3-pip
   - pip3 install adaptive
   
