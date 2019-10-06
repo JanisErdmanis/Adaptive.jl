@@ -12,7 +12,7 @@ import Base.getproperty
 import TaskMaster: Learner, ask!, tell! 
 
 abstract type AdaptiveLearner <: Learner end
-ask!(learner::AdaptiveLearner,input) = learner.learner.ask(1)[1][1] ### Need to make ask! accept a state.
+ask!(learner::AdaptiveLearner,input) = input==nothing ? nothing : learner.learner.ask(1)[1][1] ### Need to make ask! accept a state.
 tell!(learner::AdaptiveLearner,(xi,yi)) = learner.learner.tell(xi,yi)
 
 ######### 1D #########
