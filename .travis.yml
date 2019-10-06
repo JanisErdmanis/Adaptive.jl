@@ -4,5 +4,5 @@ os:
 julia:
   - 1.2
 before_install:
-  - pip install adaptive
+  - pip3 install adaptive
   
