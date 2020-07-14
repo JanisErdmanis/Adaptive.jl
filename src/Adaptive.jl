@@ -6,7 +6,8 @@ const adaptive = PyNULL()
 
 
 function __init__()
-    copy!(adaptive, pyimport_conda("adaptive", "adaptive"))
+    #copy!(adaptive, pyimport_conda("adaptive", "adaptive"))
+    copy!(adaptive, pyimport_conda("adaptive", "adaptive", "conda-forge"))
 end
 
 import Base.getproperty
@@ -14,7 +15,7 @@ import Base.getproperty
 import TaskMaster: Learner, ask!, tell! 
 
 abstract type AdaptiveLearner <: Learner end
-ask!(learner::AdaptiveLearner,input) = input==nothing ? nothing : learner.learner.ask(1)[1][1] ### Need to make ask! accept a state.
+ask!(learner::AdaptiveLearner,input) = learner.learner.ask(1)[1][1] ### Need to make ask! accept a state.
 tell!(learner::AdaptiveLearner,(xi,yi)) = learner.learner.tell(xi,yi)
 
 ######### 1D #########
